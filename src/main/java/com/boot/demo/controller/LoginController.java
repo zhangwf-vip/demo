@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.boot.demo.entity.User;
 
 @RestController
 @RequestMapping(value = "/Login")
@@ -26,7 +27,7 @@ public class LoginController {
 	 * @param @param password @param @param name @param @return 参数 @return
 	 *        Map<String,String> 返回类型 @throws
 	 */
-	@RequestMapping(value = "/userLogin", method = { RequestMethod.GET })
+	@RequestMapping(value = "/userLogin", method = { RequestMethod.GET }, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public Map<String, String> userLogin(
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
@@ -39,26 +40,68 @@ public class LoginController {
 
 	/**
 	 * 
-	 * @Title: userInfo 用户信息 @Description: TODO(信息) @author: Administrator @date:
-	 *         2019年12月13日 下午3:05:49 @param @param userid @param @param
-	 *         meom @param @return 参数 @return JSONObject 返回类型 @throws
+	 * @Title: userInfo 查询用户信息
+	 * @Description: TODO(查询用户信息)
+	 * @author: Administrator
+	 * @date: 2019年12月13日 下午3:04:48
+	 * @param @param password @param @param name @param @return 参数 @return
+	 *        Map<String,String> 返回类型 @throws
 	 */
-	@RequestMapping(value = "/userInfo/{userId}/{memo}", method = { RequestMethod.GET })
+	@RequestMapping(value = "/userInfo/{userId}/{memo}", method = {
+			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public JSONObject userInfo(@PathVariable(value = "userId") int userid, @PathVariable(value = "memo") String meom) {
-		JSONObject result = new JSONObject();
-		result.put("msg", "ok");
-		result.put("method", "@ResponseBody");
-		result.put("data", userid + " @" + meom);
+	public String userInfo(@PathVariable(value = "userId") int userid, @PathVariable(value = "memo") String meom) {
 
-		return result;
+		User model = new User();
+		model.setId(1);
+		model.setName("sss");
+		return JSON.toJSONString(model);
 
 	}
 
-	@RequestMapping(value = "/insertUser", method = { RequestMethod.POST })
+	/**
+	 * 
+	 * @Title: insertUser 添加用户
+	 * @Description: TODO(添加用户)
+	 * @author: Administrator
+	 * @date: 2019年12月13日 下午3:04:48
+	 * @param @param password @param @param name @param @return 参数 @return
+	 *        Map<String,String> 返回类型 @throws
+	 */
+	@RequestMapping(value = "/insertUser", method = { RequestMethod.POST }, produces = "application/json;charset=UTF-8")
+	@ResponseBody
 	public String insertUser(@RequestBody String jsonUser) {
+		User model = JSON.parseObject(jsonUser, User.class);
+		return model.getName() + "@sss" + model.getPassword();
+	}
 
+	/**
+	 * 
+	 * @Title: UpdateUser 用户登录
+	 * @Description: TODO(用户登录)
+	 * @author: Administrator
+	 * @date: 2019年12月13日 下午3:04:48
+	 * @param @param password @param @param name @param @return 参数 @return
+	 *        Map<String,String> 返回类型 @throws
+	 */
+	@RequestMapping(value = "/updateUser", method = { RequestMethod.PUT })
+	@ResponseBody
+	public String UpdateUser(@RequestBody String jsonuser) {
 		return "";
 	}
 
+	/**
+	 * 
+	 * @Title: deleteUser 删除用户
+	 * @Description: TODO(删除用户)
+	 * @author: Administrator
+	 * @date: 2019年12月13日 下午3:04:48
+	 * @param @param password @param @param name @param @return 参数 @return
+	 *        Map<String,String> 返回类型 @throws
+	 */
+	@RequestMapping(value = "/deleteuser/{userid}", method = { RequestMethod.DELETE })
+	@ResponseBody
+	public String deleteUser(@PathVariable("userid") String userid) {
+		return "";
+	}
 }
