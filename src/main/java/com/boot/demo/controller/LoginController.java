@@ -3,6 +3,7 @@ package com.boot.demo.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.boot.demo.entity.User;
+import com.boot.demo.service.IUserImplemts;
 
 @RestController
 @RequestMapping(value = "/Login")
 public class LoginController {
+
+	@Autowired
+	private IUserImplemts IUserImplemts;
 
 	/**
 	 * 
@@ -50,11 +55,10 @@ public class LoginController {
 	@RequestMapping(value = "/userInfo/{userId}/{memo}", method = {
 			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String userInfo(@PathVariable(value = "userId") int userid, @PathVariable(value = "memo") String meom) {
+	public String userInfo(@PathVariable(value = "userId") String userid, @PathVariable(value = "memo") String meom) {
 
-		User model = new User();
-		model.setId(1);
-		model.setName("sss");
+		User model = IUserImplemts.getUserInfo(userid);
+
 		return JSON.toJSONString(model);
 
 	}
