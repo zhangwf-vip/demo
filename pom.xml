@@ -67,7 +67,13 @@
 			<version>1.1.9</version>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
 
+			<version>1.9.3</version>
+		</dependency>
+		
 		<!--处理JSON格式 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -75,11 +81,11 @@
 			<version>1.2.58</version>
 		</dependency>
 
-        <!-- lombok -->
+		<!-- lombok -->
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <scope>provided</scope>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

@@ -1,8 +1,11 @@
 package com.boot.demo.controller;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +22,7 @@ import com.boot.demo.service.IUserImplemts;
 @RestController
 @RequestMapping(value = "/Login")
 public class LoginController {
-
+	private static final Logger loggers = LogManager.getLogger(CRUD.class);
 	@Autowired
 	private IUserImplemts IUserImplemts;
 
@@ -31,15 +34,24 @@ public class LoginController {
 	 * @date: 2019年12月13日 下午3:04:48
 	 * @param @param password @param @param name @param @return 参数 @return
 	 *        Map<String,String> 返回类型 @throws
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
 	@RequestMapping(value = "/userLogin", method = { RequestMethod.GET }, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public Map<String, String> userLogin(
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
-			@RequestParam("name") String name) {
+			@RequestParam("name") String name) throws IllegalArgumentException, IllegalAccessException {
+		User user = IUserImplemts.userLogin(name, password);
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("姓名：", name);
-		map.put("密码：", password);
+
+		for (Field field : user.getClass().getDeclaredFields()) {
+			field.setAccessible(true);
+			map.put(field.getName().toString(), field.get(user).toString());
+
+			loggers.info(field.getName() + "@" + field.get(user));
+		}
+
 		return map;
 	}
 
@@ -57,6 +69,7 @@ public class LoginController {
 	@ResponseBody
 	public String userInfo(@PathVariable(value = "userId") String userid, @PathVariable(value = "memo") String meom) {
 
+		loggers.error("sss");
 		User model = IUserImplemts.getUserInfo(userid);
 
 		return JSON.toJSONString(model);
