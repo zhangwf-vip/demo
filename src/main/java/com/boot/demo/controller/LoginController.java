@@ -71,7 +71,7 @@ public class LoginController {
 
 		loggers.error("sss");
 		User model = IUserImplemts.getUserInfo(userid);
-
+		
 		return JSON.toJSONString(model);
 
 	}
