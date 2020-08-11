@@ -24,7 +24,7 @@ public class CRUD {
 	@RequestMapping("/ListUser")
 	@ResponseBody
 	public List<User> ListUser() {
-		loggers.info("这是我的日志啊啊啊啊啊 啊 1硕大的");
+		loggers.info("这是我的日志啊啊啊啊啊");
 		return userservice.ListUser();
 	}
 

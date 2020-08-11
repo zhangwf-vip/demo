@@ -10,56 +10,58 @@ import com.boot.demo.service.IUserImplemts;
 @Service
 public class UserImplemts implements IUserImplemts {
 
-	@Autowired
-	private UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
 
-	/**
-	 * 
-	 * @Title: getUserInfo @Description: 获取用户信息 @author: @date:
-	 *         2019年12月20日 @param @return @throws
-	 */
-	@Override
-	public User getUserInfo(String userId) {
-		// TODO Auto-generated method stub
-		return userMapper.getUserInfo(userId);
-	}
+    /**
+     * @Title: getUserInfo @Description: 获取用户信息 @author: @date:
+     * 2019年12月20日 @param @return @throws
+     */
+    @Override
+    public User getUserInfo(String userId) {
+        // TODO Auto-generated method stub
+        return userMapper.getUserInfo(userId);
+    }
 
-	/**
-	 * 
-	 * @Title: userLogin @Description: 用户登录 @author: @date:
-	 *         2019年12月20日 @param @return @throws
-	 */
-	@Override
-	public User userLogin(String userName, String passWord) {
-		// TODO Auto-generated method stub
-		return userMapper.userLogin(userName, passWord);
-	}
+    /**
+     * @Title: userLogin @Description: 用户登录 @author: @date:
+     * 2019年12月20日 @param @return @throws
+     */
+    @Override
+    public User userLogin(String userName, String passWord) {
+        // TODO Auto-generated method stub
+        return userMapper.userLogin(userName, passWord);
+    }
 
-	/**
-	 * 
-	 * @Title: insertUser @Description: 增加用户信息 @author: @date:
-	 *         2019年12月20日 @param @return @throws
-	 */
-	/*
-	 * @Override public String insertUser(User user) { // TODO Auto-generated method
-	 * stub return null; }
-	 * 
-	 *//**
-		 * 
-		 * @Title: updateUSer @Description: 修改用户信息 @author: @date:
-		 *         2019年12月20日 @param @return @throws
-		 */
-	/*
-	 * @Override public String updateUSer(User user) { // TODO Auto-generated method
-	 * stub return null; }
-	 * 
-	 *//**
-		 * 
-		 * @Title: deleteUser @Description: 删除用户信息 @author: @date:
-		 *         2019年12月20日 @param @return @throws
-		 *//*
-			 * @Override public String deleteUser(String userId) { // TODO Auto-generated
-			 * method stub return null; }
-			 */
+    @Override
+    /**
+     *
+     * @Title: insertUser @Description: 增加用户信息 @author: @date:
+     *         2019年12月20日 @param @return @throws
+     */
+    public String insertUser(User user) {
+        return null;
+    }
+
+    @Override
+    /**
+     *
+     * @Title: updateUSer @Description: 修改用户信息 @author: @date:
+     *         2019年12月20日 @param @return @throws
+     */
+    public String updateUSer(User user) {
+        return null;
+    }
+
+    @Override
+    /**
+     *
+     * @Title: deleteUser @Description: 删除用户信息 @author: @date:
+     *         2019年12月20日 @param @return @throws
+     */
+    public String deleteUser(String userId) {
+        return null;
+    }
+
 
 }

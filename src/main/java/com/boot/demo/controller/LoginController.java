@@ -116,7 +116,9 @@ public class LoginController {
 	@RequestMapping(value = "/updateUser", method = { RequestMethod.PUT })
 	@ResponseBody
 	public String UpdateUser(@RequestBody String jsonuser) {
-		return "";
+		User model = JSON.parseObject(jsonuser, User.class);
+		//IUserImplemts.u
+		return  "";
 	}
 
 	/**

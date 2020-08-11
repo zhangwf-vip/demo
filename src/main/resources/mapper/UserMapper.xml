@@ -8,7 +8,6 @@
         <result property="name" column="name"/>
         <result property="password" column="password"/>
         <result property="number" column="number"/>
-
     </resultMap>
 
     <select id="getUserInfo" resultMap="result">
@@ -21,7 +20,7 @@
 
     <insert id="insertUser" parameterType="com.boot.demo.entity.User"
             keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO user
+	  INSERT INTO user
 		(
 		id,name,password,number
 		)
