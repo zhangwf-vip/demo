@@ -7,6 +7,8 @@ import com.boot.demo.entity.User;
 import com.boot.demo.mapper.UserMapper;
 import com.boot.demo.service.IUserImplemts;
 
+import java.util.Optional;
+
 @Service
 public class UserImplemts implements IUserImplemts {
 
@@ -18,9 +20,9 @@ public class UserImplemts implements IUserImplemts {
      * 2019年12月20日 @param @return @throws
      */
     @Override
-    public User getUserInfo(String userId) {
+    public Optional<User> getUserInfo(String userId) {
         // TODO Auto-generated method stub
-        return userMapper.getUserInfo(userId);
+        return Optional.ofNullable(userMapper.getUserInfo(userId));
     }
 
     /**
@@ -28,9 +30,9 @@ public class UserImplemts implements IUserImplemts {
      * 2019年12月20日 @param @return @throws
      */
     @Override
-    public User userLogin(String userName, String passWord) {
+    public Optional<User> userLogin(String userName, String passWord) {
         // TODO Auto-generated method stub
-        return userMapper.userLogin(userName, passWord);
+         return Optional.ofNullable(userMapper.userLogin(userName, passWord));
     }
 
     @Override

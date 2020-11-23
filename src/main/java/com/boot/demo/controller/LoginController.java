@@ -3,6 +3,7 @@ package com.boot.demo.controller;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -48,10 +49,15 @@ public class LoginController {
 	public Map<String, String> userLogin(
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 			@RequestParam("name") String name) throws IllegalArgumentException, IllegalAccessException {
-		User user = IUserImplemts.userLogin(name, password);
+		Optional<User> user = IUserImplemts.userLogin(name, password);
 		Map<String, String> map = new HashMap<String, String>();
+		if (Optional.ofNullable(user).isPresent())
+		{
 
-		for (Field field : user.getClass().getDeclaredFields()) {
+
+		}
+
+		for (Field field : user.get().getClass().getDeclaredFields()) {
 			field.setAccessible(true);
 			map.put(field.getName().toString(), field.get(user).toString());
 
@@ -81,7 +87,7 @@ public class LoginController {
 	public String userInfo(@PathVariable(value = "userId") String userid, @PathVariable(value = "memo") String meom) {
 
 		loggers.error("sss");
-		User model = IUserImplemts.getUserInfo(userid);
+		Optional<User> model = IUserImplemts.getUserInfo(userid);
 
 		return JSON.toJSONString(model);
 

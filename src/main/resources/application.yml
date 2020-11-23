@@ -1,10 +1,12 @@
 
 spring:
+  application:
+    name: demo
   datasource:
       type: com.alibaba.druid.pool.DruidDataSource
       druid:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://192.168.77.130:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+        url: jdbc:mysql://192.168.77.4:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
         username: root
         password: test123
         # 配置初始化大小、最小、最大
@@ -67,5 +69,14 @@ mybatis:
     log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
 
 
+loggback:
+  file:
+    path: D:\log4j2
+  stdout: on
+  app:
+    owner:
+      folder: true
 
- 
+server:
+  servlet:
+    context-path: /app/api

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.boot.demo.entity.User;
 
+import java.util.Optional;
+
 @Service
 public interface IUserImplemts {
 
@@ -12,14 +14,14 @@ public interface IUserImplemts {
      * @Title: getUserInfo @Description: TODO(获取用户信息) @author: Administrator @date:
      * 2019年12月20日 上午10:25:43 @param @param userId @param @param
      */
-    User getUserInfo(String userId);
+    Optional<User> getUserInfo(String userId);
 
     /**
      * @Title: userLogin @Description: TODO(用户登录) @author: Administrator @date:
      * 2019年12月20日 上午10:26:16 @param @param userName @param @param
      * passWord @param @return 参数 @return User 返回类型 @throws
      */
-    User userLogin(String userName, String passWord);
+    Optional<User> userLogin(String userName, String passWord);
 
     /**
      * @Title: insertUser @Description: TODO(添加用户) @author: Administrator @date:

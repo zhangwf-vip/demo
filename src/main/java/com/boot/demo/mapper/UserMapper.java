@@ -3,8 +3,14 @@ package com.boot.demo.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.boot.demo.entity.User;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Mapper
+@Repository
 public interface UserMapper {
 
 	/**
@@ -13,7 +19,7 @@ public interface UserMapper {
 	 *         Administrator @date: 2020年1月16日 上午9:45:55 @param @param
 	 *         userid @param @return 参数 @return User 返回类型 @throws
 	 */
-	public User getUserInfo(String userId);
+	public User  getUserInfo(String userId);
 
 	/**
 	 * 
@@ -22,6 +28,6 @@ public interface UserMapper {
 	 *         userName @param @param passWord @param @return 参数 @return User
 	 *         返回类型 @throws
 	 */
-	public User userLogin(String userName, String passWord);
+	public  User  userLogin(String userName, String passWord);
 
 }
