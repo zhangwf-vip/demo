@@ -51,17 +51,17 @@ public class LoginController {
 			@RequestParam("name") String name) throws IllegalArgumentException, IllegalAccessException {
 		Optional<User> user = IUserImplemts.userLogin(name, password);
 		Map<String, String> map = new HashMap<String, String>();
-		if (Optional.ofNullable(user).isPresent())
-		{
-
-
-		}
+//		if (Optional.ofNullable(user).isPresent())
+//		{
+//
+//
+//		}
 
 		for (Field field : user.get().getClass().getDeclaredFields()) {
 			field.setAccessible(true);
-			map.put(field.getName().toString(), field.get(user).toString());
+			map.put(field.getName().toString(), field.get(user.get()).toString());
 
-			loggers.info(field.getName() + "@" + field.get(user));
+			loggers.info(field.getName() + "@" + field.get(user.get()));
 		}
 
 		return map;
